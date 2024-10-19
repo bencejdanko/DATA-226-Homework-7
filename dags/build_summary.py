@@ -34,7 +34,7 @@ def create_session_summary():
     cursor.close()
 
 with DAG(
-    dag_id="create_session_summary",
+    dag_id="build_summary",
     start_date=datetime.datetime(2024, 10, 18),
     catchup=False,
     tags=['ETL'],
