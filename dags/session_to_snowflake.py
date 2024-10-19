@@ -30,7 +30,7 @@ def load():
 
 with DAG(
     dag_id="session_to_snowflake",
-    start_date = datetime(2024,10,18),
+    start_date = datetime.datetime(2024,10,18),
     catchup=False,
     tags=['ETL'],
     schedule_interval = '@daily'
