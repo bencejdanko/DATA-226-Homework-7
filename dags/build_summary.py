@@ -16,7 +16,7 @@ def create_session_summary():
     
     # Create the session_summary table
     cursor.execute("""
-    CREATE OR REPLACE TABLE DEV.RAW_DATA.USER_SESSION_DATA AS
+    CREATE OR REPLACE TABLE DEV.ANALYTICS.SESSION_SUMMARY AS
     SELECT DISTINCT
         st.SESSIONID,
         usc.USERID,
