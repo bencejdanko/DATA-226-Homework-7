@@ -4,6 +4,8 @@ from airflow.decorators import task
 from airflow.operators.python import get_current_context
 from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
 
+import datetime
+
 def return_snowflake_conn():
 
     # Initialize the SnowflakeHook
@@ -28,6 +30,7 @@ def load():
 
 with DAG(
     dag_id="session_to_snowflake",
+    start_date = datetime(2024,10,18),
     catchup=False,
     tags=['ETL'],
     schedule_interval = '@daily'
