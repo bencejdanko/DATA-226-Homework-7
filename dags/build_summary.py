@@ -16,19 +16,18 @@ def create_session_summary():
     
     # Create the session_summary table
     cursor.execute("""
-    CREATE OR REPLACE TABLE dev.analytics.session_summary AS
-    SELECT 
-        us.userid,
-        st.sessionid,
-        st.ts,
-        ROW_NUMBER() OVER (PARTITION BY us.userid, st.sessionid ORDER BY st.ts) as row_num
+    CREATE OR REPLACE TABLE DEV.RAW_DATA.USER_SESSION_DATA AS
+    SELECT DISTINCT
+        st.SESSIONID,
+        usc.USERID,
+        usc.CHANNEL,
+        st.TS
     FROM 
-        dev.raw_data.user_session_channel us
+        DEV.RAW_DATA.SESSION_TIMESTAMP st
     JOIN 
-        dev.raw_data.session_timestamp st
+        DEV.RAW_DATA.USER_SESSION_CHANNEL usc
     ON 
-        us.sessionid = st.sessionid
-    QUALIFY row_num = 1;
+        st.SESSIONID = usc.SESSIONID;
     """)
     
     cursor.close()
