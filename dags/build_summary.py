@@ -16,7 +16,7 @@ def create_session_summary():
     
     # Create the session_summary table
     cursor.execute("""
-    CREATE OR REPLACE TABLE analytics.session_summary AS
+    CREATE OR REPLACE TABLE dev.analytics.session_summary AS
     SELECT 
         us.user_id,
         st.session_id,
